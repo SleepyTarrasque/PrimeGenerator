@@ -56,6 +56,7 @@ namespace PrimeGenerator
                 }
             }
 
+            // Output list of primes
             Console.WriteLine("\n\nFINAL PRIME LIST:");
             for (int i = 0; i < susprimes.Count; i++)
             {
