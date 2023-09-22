@@ -31,6 +31,11 @@ namespace PrimeGenerator
                     susprimes.Add(testnum);
                     Console.WriteLine($"Suspected prime:    {testnum}");
                 }
+                else if (testnum == 2)
+                {
+                    susprimes.Add(testnum);
+                    Console.WriteLine($"Suspected prime:    {testnum}");
+                }
                 
                 testnum++;
                 
@@ -51,7 +56,9 @@ namespace PrimeGenerator
                     if (testnum % divisortest == 0)
                     {
                         Console.WriteLine($"{testnum} is a psuedoprime divisible by {divisortest}.\n");
-                        susprimes.RemoveAt(i);
+                        susprimes.RemoveAt(n);
+                        n--;
+                        break;
                     }
                 }
             }
@@ -60,16 +67,19 @@ namespace PrimeGenerator
             Console.WriteLine("\n\nFINAL PRIME LIST:");
             for (int i = 0; i < susprimes.Count; i++)
             {
-                int m = i % 10;
+                int m = (i + 1) % 10;
                 switch (m) 
                 {
-                    case 1: { Console.WriteLine(i + "st prime is:   " + susprimes[i]); break; }
+                    case 1: { Console.WriteLine((i + 1) + "st prime is:   " + susprimes[i]); break; }
 
-                    case 2: { Console.WriteLine(i + "nd prime is:   " + susprimes[i]); break; }
+                    case 2: { Console.WriteLine((i + 1) + "nd prime is:   " + susprimes[i]); break; }
 
-                    case 3: { Console.WriteLine(i + "rd prime is:   " + susprimes[i]); break; }
+                    case 3: {
+                            if ((i + 1) % 100 == 13){ Console.WriteLine((i + 1) + "th prime is:   " + susprimes[i]); break; }
+                            else { Console.WriteLine((i + 1) + "rd prime is:   " + susprimes[i]); break; }
+                            }
                     
-                    default: { Console.WriteLine(i + "th prime is:   " + susprimes[i]); break; }
+                    default: { Console.WriteLine((i + 1) + "th prime is:   " + susprimes[i]); break; }
                 }
             }
             Console.ReadLine();
