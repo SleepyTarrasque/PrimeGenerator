@@ -1,0 +1,7 @@
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\obj\Debug\PrimeGenerator.csproj.AssemblyReference.cache
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\obj\Debug\PrimeGenerator.csproj.CoreCompileInputs.cache
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\bin\Debug\PrimeGenerator.exe.config
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\bin\Debug\PrimeGenerator.exe
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\bin\Debug\PrimeGenerator.pdb
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\obj\Debug\PrimeGenerator.exe
+C:\Development\Visual Studio\C#\Repos\PrimeGenerator\PrimeGenerator\obj\Debug\PrimeGenerator.pdb
