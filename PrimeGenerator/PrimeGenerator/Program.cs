@@ -16,17 +16,18 @@ namespace PrimeGenerator
             BigInteger divisortest = new BigInteger();
             List<BigInteger> susprimes = new List<BigInteger>(); 
 
-            //Fermat's Little Theorem Algorithm
-            // 2^(n-1) == 1(mod n)
+            // Fermat's Little Theorem Algorithm
+            //   2^(n-1) == 1(mod n),  for n > 2
 
             
-            
-            testnum = 2;
-
+            testnum = 3; // starts searching for primes at 3
+            susprimes.Add(2); // manually adds 2 as the first prime, as it fails FLT
             Console.WriteLine("Input the maximum number you would like to test:");
             int maxval = int.Parse(Console.ReadLine());
 
-            // Generate a list of possible primes
+
+
+            ////  POSSIBLE PRIME GENERATION  ////
             while (testnum <= maxval)
             {
                 Console.WriteLine($"\nTesting {testnum}:\nThe result is 2^{testnum-1} = {(BigInteger.ModPow(2, testnum - 1, testnum))}(mod{testnum})");
@@ -37,21 +38,16 @@ namespace PrimeGenerator
                     susprimes.Add(testnum);
                     Console.WriteLine($"Suspected prime:    {testnum}");
                 }
-                else if (testnum == 2) // 2 fails FLT but is a prime
-                {
-                    susprimes.Add(testnum);
-
-                }
                 
                 testnum++;
                 
             }
 
 
-            Console.WriteLine("\n\nPSUEDOPRIME CHECKING:");
-            
 
-            // Run list of suspected primes through sieve
+            ////  PSUEDOPRIME CHECKING  ////
+            Console.WriteLine("\n\nPSUEDOPRIME CHECKING:");
+            // Run list of suspected primes through Sieve of Eratosthenes to eliminate psuedoprimes
             for (int n = 0; n < susprimes.Count; n++)
             {
                 testnum = susprimes[n];
@@ -63,13 +59,13 @@ namespace PrimeGenerator
                     {
                         Console.WriteLine($"{testnum} is a psuedoprime divisible by {divisortest}.\n");
                         susprimes.RemoveAt(n);
-                        n--;
+                        n--; // Because susprimes[n] is now a new value, it needs to be retested
                         break;
                     }
                 }
             }
 
-            // Output list of primes
+            ////  OUTPUT LIST OF PRIMES  ////
             Console.WriteLine("\n\nFINAL PRIME LIST:");
             for (int i = 0; i < susprimes.Count; i++)
             {
