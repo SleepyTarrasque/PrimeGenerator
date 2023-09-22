@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Remoting.Services;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace PrimeGenerator
 {
@@ -11,30 +12,35 @@ namespace PrimeGenerator
     {
         static void Main(string[] args)
         {
-            List<ulong> susprimes = new List<ulong>(); 
+            BigInteger testnum = new BigInteger();
+            BigInteger divisortest = new BigInteger();
+            List<BigInteger> susprimes = new List<BigInteger>(); 
 
             //Fermat's Little Theorem Algorithm
             // 2^(n-1) == 1(mod n)
 
             
             
-            ulong testnum = 2;
+            testnum = 2;
+
+            Console.WriteLine("Input the maximum number you would like to test:");
+            int maxval = int.Parse(Console.ReadLine());
 
             // Generate a list of possible primes
-            while (testnum <= 1024)
+            while (testnum <= maxval)
             {
-                Console.WriteLine($"\nTesting {testnum}:\nThe result is 2^{testnum-1} = {(Math.Pow(2, testnum-1) % testnum)}(mod{testnum})");
+                Console.WriteLine($"\nTesting {testnum}:\nThe result is 2^{testnum-1} = {(BigInteger.ModPow(2, testnum - 1, testnum))}(mod{testnum})");
                
                 
-                if ((Math.Pow(2, testnum - 1) % testnum) == 1)
+                if ((BigInteger.ModPow(2,testnum-1,testnum)) == 1)
                 {
                     susprimes.Add(testnum);
                     Console.WriteLine($"Suspected prime:    {testnum}");
                 }
-                else if (testnum == 2)
+                else if (testnum == 2) // 2 fails FLT but is a prime
                 {
                     susprimes.Add(testnum);
-                    Console.WriteLine($"Suspected prime:    {testnum}");
+
                 }
                 
                 testnum++;
@@ -49,9 +55,9 @@ namespace PrimeGenerator
             for (int n = 0; n < susprimes.Count; n++)
             {
                 testnum = susprimes[n];
-                for (int i = 0; susprimes[i] < Math.Sqrt(susprimes[n]); i++)
+                for (int i = 0; (double)susprimes[i] < Math.Exp(BigInteger.Log((susprimes[n]) / 2)); i++)
                 {
-                    ulong divisortest = susprimes[i];
+                    divisortest = susprimes[i];
 
                     if (testnum % divisortest == 0)
                     {
